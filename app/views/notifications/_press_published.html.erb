@@ -1,0 +1,11 @@
+<%
+  post = notification.target
+ %>
+<% if post.blank? %>
+  相关信息已删除
+<% else %>
+  <div class="media-heading">
+    <p>你提交的文章《<%= link_to(post.title, homeland_press.post_path(post)) %>》已经审核通过。</p>
+    <p>感谢支持，欢迎继续提交。</p>
+  </div>
+<% end %>

@@ -1,17 +1,28 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div id="post-detail" class="panel panel-default">
-      <div class="panel-body">
-        <h1><%= @post.title %></h1>
-        <div class="post-info">
-          <%= timeago @post.published_at %> 作者: <%= user_avatar_tag(@post.user, :sm)%> <%= user_name_tag(@post.user) %>
-        </div>
-        <div class="post-body markdown">
-          <%= markdown @post.body %>
-        </div>
+<% title_tag @post.title %>
 
-        <%= render "/shared/comments", commentable: @post %>
-      </div>
+<div id="post-detail" class="panel panel-default">
+  <div class="panel-body">
+    <div class="post-opts">
+      <% if can?(:update, @post) %>
+      <%= link_to '编辑', edit_post_path, class: 'btn btn-sm btn-default' %>
+      <% end %>
+
+      <% if can?(:publish, @post) && @post.upcoming? %>
+      <%= link_to '审核通过', publish_post_path, method: 'put', class: 'btn btn-sm btn-success' %>
+      <% end %>
+
+      <% if can?(:destroy, @post) && @post.upcoming? %>
+      <%= link_to '删除', @post, method: 'delete', class: 'btn btn-sm btn-danger', data: { confirm: "确定要删除么？" } %>
+      <% end %>
+    </div>
+    <h1><%= @post.title %></h1>
+    <div class="post-info">
+      <%= timeago @post.published_at %> 作者: <%= user_name_tag(@post.user) %>
+    </div>
+    <div class="post-body markdown">
+      <%= markdown @post.body %>
     </div>
   </div>
 </div>
+
+<%= render "/shared/comments", commentable: @post %>

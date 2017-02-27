@@ -1,10 +1,11 @@
 module Homeland::Press
   class PostsController < Homeland::Press::ApplicationController
-    before_action :set_post, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:new, :create, :update, :publish, :destroy]
+    before_action :set_post, only: [:show, :edit, :update, :publish, :destroy]
 
     # GET /posts
     def index
-      @posts = Post.published.order('published_at desc, id desc').page(params[:page]).per(10)
+      @posts = Post.published.order('published_at desc, id desc').page(params[:page]).per(2)
     end
 
     def upcoming
@@ -23,19 +24,23 @@ module Homeland::Press
 
     # GET /posts/new
     def new
+      authorize! :create, Post
       @post = Post.new
     end
 
     # GET /posts/1/edit
     def edit
+      authorize! :update, @post
     end
 
     # POST /posts
     def create
+      authorize! :create, Post
       @post = Post.new(post_params)
+      @post.user_id = current_user.id
 
       if @post.save
-        redirect_to @post, notice: 'Post was successfully created.'
+        redirect_to @post, notice: '文章提交成功，需要等待管理员审核。'
       else
         render :new
       end
@@ -43,17 +48,25 @@ module Homeland::Press
 
     # PATCH/PUT /posts/1
     def update
+      authorize! :update, @post
       if @post.update(post_params)
-        redirect_to @post, notice: 'Post was successfully updated.'
+        redirect_to @post, notice: '文章更新成功。'
       else
         render :edit
       end
     end
 
+    def publish
+      authorize! :publish, @post
+      @post.published!
+      redirect_to posts_path, notice: "文章审核成功。"
+    end
+
     # DELETE /posts/1
     def destroy
+      authorize! :destroy, @post
       @post.destroy
-      redirect_to posts_url, notice: 'Post was successfully destroyed.'
+      redirect_to posts_url, notice: '文章删除成功。'
     end
 
     private

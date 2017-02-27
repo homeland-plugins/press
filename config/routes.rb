@@ -4,5 +4,8 @@ Homeland::Press::Engine.routes.draw do
       get :upcoming
       post :preview
     end
+    member do
+      put :publish
+    end
   end
 end

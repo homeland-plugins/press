@@ -4,5 +4,9 @@
   <div class="post-summary markdown">
     <%= simple_format post.summary %>
   </div>
+  <div class="post-info">
+    <%= user_name_tag(post.user) %> ·
+    <%= timeago(post.published_at) %>
+  </div>
   <% end %>
 </div>

@@ -10,7 +10,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.integer :likes_count, null: false, default: 0
       t.integer :comments_count, null: false, default: 0
       t.integer :status, null: false, default: 0
-      t.datetime :published_at
+      t.datetime :published_at, null: false
 
       t.timestamps
     end
