@@ -64,14 +64,29 @@
     }
 
     .post-opts,
-    .post-info {
+    .post-info,
+    .post-actions {
       text-align: center;
       color: #999;
     }
 
     .post-info {
       .media-object { display: inline; }
-      a.user-name { color: #999; text-decoration: underline; }
+      a { color: #777;}
+      a.user-name { color: #0069D6; font-weight: bold; }
+    }
+
+    .post-actions {
+      margin-top: 15px;
+      .likeable {
+        border: 1px solid #eee;
+        padding: 10px 20px;
+        border-radius: 3px;
+        text-decoration: none !important;
+        &:hover {
+          background: #f0f0f0;
+        }
+      }
     }
   }
 }

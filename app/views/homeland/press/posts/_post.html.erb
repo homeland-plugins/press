@@ -6,7 +6,9 @@
   </div>
   <div class="post-info">
     <%= user_name_tag(post.user) %> ·
-    <%= timeago(post.published_at) %>
+    <%= timeago(post.created_at) %> ·
+    <%= link_to "#{post.likes_count} 个赞", post %> ·
+    <%= link_to "#{post.comments_count} 条评论", post_path(post, anchor: 'comments') %>
   </div>
   <% end %>
 </div>

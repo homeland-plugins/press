@@ -4,6 +4,8 @@ class Post < ApplicationRecord
 
   enum status: %i(upcoming published rejected)
 
+  counter :hits
+
   before_save :generate_summary
   before_create :generate_published_at
 

@@ -15,6 +15,7 @@ module Homeland::Press
 
     # GET /posts/1
     def show
+      @post.hits.incr(1)
     end
 
     def preview

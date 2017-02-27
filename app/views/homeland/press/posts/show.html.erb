@@ -17,12 +17,20 @@
     </div>
     <h1><%= @post.title %></h1>
     <div class="post-info">
-      <%= timeago @post.published_at %> 作者: <%= user_name_tag(@post.user) %>
+      <%= user_name_tag(@post.user) %> ·
+      <%= timeago @post.created_at %> ·
+      <%= @post.hits %> 次阅读 ·
+      <a href="#comments"><%= @post.comments_count %> 条评论</a>
     </div>
     <div class="post-body markdown">
       <%= markdown @post.body %>
     </div>
+    <div class="post-actions">
+      <%= likeable_tag(@post) %>
+    </div>
   </div>
 </div>
 
-<%= render "/shared/comments", commentable: @post %>
+<div id="comments">
+  <%= render "/shared/comments", commentable: @post %>
+</div>
