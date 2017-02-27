@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Homeland::Press::VERSION
   s.authors     = ["Jason Lee"]
   s.email       = ["huacnlee@gmail.com"]
-  s.homepage    = ""
-  s.summary     = "Summary of Homeland::Press."
-  s.description = "Description of Homeland::Press."
+  s.homepage    = "https://github.com/ruby-china/homeland-press"
+  s.summary     = "Press/Blog/News plugin for Homeland."
+  s.description = "Press/Blog/News plugin for Homeland, this gem is only work on Homeland Application."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
