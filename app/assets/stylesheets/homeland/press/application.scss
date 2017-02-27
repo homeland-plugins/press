@@ -30,6 +30,11 @@
       margin-bottom: 15px;
       border-bottom: 1px solid #eee;
       padding-bottom: 15px;
+
+      &:last-child {
+        border-bottom: 0;
+        margin-bottom: 0px;
+      }
     }
 
     .post-title { font-size: 18px; line-height: 22px; margin-bottom: 0px; }

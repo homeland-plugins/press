@@ -5,7 +5,7 @@ module Homeland::Press
 
     # GET /posts
     def index
-      @posts = Post.published.order('published_at desc, id desc').page(params[:page]).per(2)
+      @posts = Post.published.order('published_at desc, id desc').page(params[:page]).per(10)
     end
 
     def upcoming
