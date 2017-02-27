@@ -1,4 +1,6 @@
 "zh-CN":
+  plugin:
+    press: "头条"
   activerecord:
     models:
       post: "文章"

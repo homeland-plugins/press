@@ -1,0 +1,8 @@
+<div class="post" id="post-<= post.id %>">
+  <div class="post-title"><%= link_to post.title, post %></div>
+  <% if post.published? %>
+  <div class="post-summary markdown">
+    <%= simple_format post.summary %>
+  </div>
+  <% end %>
+</div>

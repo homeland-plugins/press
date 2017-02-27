@@ -27,6 +27,10 @@
 
     .post-title { font-size: 22px; margin-bottom: 15px; }
     .post-summary { font-size: 14px; line-height: 150%; color: #888; }
+
+    &.post-upcoming {
+      .post-title { font-size: 16px; }
+    }
   }
 
 

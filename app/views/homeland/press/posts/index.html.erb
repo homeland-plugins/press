@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <div id="post-list" class="panel panel-default">
+    <div id="post-list" class="panel panel-default post-<%= action_name %>">
       <div class="panel-body">
         <div class="toolbar clearfix">
           <div class="pull-right">
@@ -14,14 +14,8 @@
 
 
         </div>
-        <% @posts.each do |post| %>
-        <div class="post" id="post-<= post.id %>">
-          <div class="post-title"><%= link_to post.title, post %></div>
-          <div class="post-summary markdown">
-            <%= simple_format post.summary %>
-          </div>
-        </div>
-        <% end %>
+
+        <%= render partial: 'post', collection: @posts %>
 
         <%= paginate @posts %>
       </div>
