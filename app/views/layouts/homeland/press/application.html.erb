@@ -1,0 +1,15 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag    "homeland/press/application", media: "all" %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "homeland/press/application" %>
+<% end %>
+
+<% content_for :main do %>
+  <div id="homeland-press">
+    <%= yield %>
+  </div>
+<% end %>
+
+<%= render template: "/layouts/application" %>

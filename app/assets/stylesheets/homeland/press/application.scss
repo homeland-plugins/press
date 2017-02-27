@@ -1,0 +1,43 @@
+/*
+ *= require_self
+ */
+
+#homeland-press {
+  textarea#post_body { height: 400px; }
+
+  .toolbar {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    line-height: 40px;
+  }
+
+  .filter {
+    font-size: 15px;
+  }
+
+  #post-list {
+    .panel-body {
+      padding: 60px;
+    }
+
+    .post {
+      margin-bottom: 20px;
+    }
+
+    .post-title { font-size: 22px; margin-bottom: 15px; }
+    .post-summary { font-size: 14px; line-height: 150%; color: #888; }
+  }
+
+
+  #post-detail {
+    h1 {
+      text-align: center; margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .panel-body {
+      padding: 60px;
+    }
+  }
+}

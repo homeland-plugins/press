@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div id="post-list" class="panel panel-default">
+      <div class="panel-body">
+        <div class="toolbar clearfix">
+          <div class="pull-right">
+            <%= link_to "提交新文章", new_post_path, class: 'btn btn-default' %>
+          </div>
+
+          <div class="filter">
+            <%= link_to "首页", posts_path %> /
+            <%= link_to "待审核区", upcoming_posts_path %>
+          </div>
+
+
+        </div>
+        <% @posts.each do |post| %>
+        <div class="post" id="post-<= post.id %>">
+          <div class="post-title"><%= link_to post.title, post %></div>
+          <div class="post-summary markdown">
+            <%= simple_format post.summary %>
+          </div>
+        </div>
+        <% end %>
+
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
+</div>

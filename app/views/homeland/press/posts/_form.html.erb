@@ -1,0 +1,17 @@
+<%= simple_form_for(post) do |f| %>
+  <%= render "/shared/error_messages", target: post %>
+
+  <%= f.input :title %>
+  <%= f.input :slug %>
+  <%= f.input :summary, as: :text %>
+
+  <%= render "/shared/editor_toolbar" %>
+
+  <div class="form-group">
+    <%= f.text_area :body, class: 'topic-editor form-control', input_html: { rows: 20 } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit t("common.save"), class: "btn btn-primary col-xs-2", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-topic" %>
+  </div>
+<% end %>
