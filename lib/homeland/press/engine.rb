@@ -4,13 +4,14 @@ module Homeland
       isolate_namespace Homeland::Press
 
       initializer 'homeland_press.register' do |app|
-        Homeland.register_plugin do
-          self.name = 'press'
-          self.display_name = '头条'
-          self.description = 'A Press plugin for Homeland.'
-          self.navbar_link = true
-          self.user_menu_link = true
-          self.root_path = "/posts"
+        Homeland.register_plugin do |plugin|
+          plugin.name           = 'press'
+          plugin.display_name   = '头条'
+          plugin.description    = 'A Press plugin for Homeland.'
+          plugin.navbar_link    = true
+          plugin.user_menu_link = true
+          plugin.root_path      = "/posts"
+          plugin.spec_path      = config.root.join('spec')
         end
       end
 
