@@ -19,7 +19,7 @@ gem 'homeland-press'
 
 修改 Homeland 的 `modules` 配置，增加 `press` 以启用。
 
-```
+```yml
 defaults: &defaults
   # add "press" to modules
   modules: 'topic,...,press'
@@ -30,7 +30,7 @@ defaults: &defaults
 
 如果你需要开发此插件，你需要同时准备好 Homeland 项目的开发环境，并修改 Homeland 项目 Gemfile:
 
-```
+```rb
 gem 'homeland-press', path: '../homeland-press'
 ````
 
