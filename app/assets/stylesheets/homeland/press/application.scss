@@ -79,12 +79,13 @@
     .post-actions {
       margin-top: 15px;
       .likeable {
-        border: 1px solid #eee;
         padding: 10px 20px;
-        border-radius: 3px;
-        text-decoration: none !important;
-        &:hover {
-          background: #f0f0f0;
+        border-radius: 6px;
+
+        &.active {
+          color: #D83227;
+          background: #fff !important;
+          box-shadow: 0 0 0;
         }
       }
     }
