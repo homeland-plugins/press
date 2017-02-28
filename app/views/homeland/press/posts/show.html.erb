@@ -23,7 +23,7 @@
     </div>
     <h1><%= @post.title %></h1>
     <div class="post-info">
-      <%= user_name_tag(@post.user) %> ·
+      <%= press_user_name_tag(@post.user) %> ·
       <span class="time" title="发布时间"><i class="fa fa-clock-o"></i> <%= timeago @post.created_at %></span> ·
       <%= @post.hits %> 次阅读 ·
       <a href="#comments"><i class="fa fa-comments-o"></i> <%= @post.comments_count %> 条评论</a>
@@ -34,7 +34,9 @@
     <div class="post-actions">
       <%= likeable_tag(@post, class: 'btn btn-lg btn-default') %>
 
-      <%= reward_user_tag(@post.user, class: 'btn btn-lg btn-default') %>
+      <% unless @post.user&.admin? %>
+        <%= reward_user_tag(@post.user, class: 'btn btn-lg btn-default') %>
+      <% end %>
     </div>
   </div>
 </div>
