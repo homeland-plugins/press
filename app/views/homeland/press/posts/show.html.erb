@@ -27,6 +27,8 @@
     </div>
     <div class="post-actions">
       <%= likeable_tag(@post, class: 'btn btn-lg btn-default') %>
+
+      <%= reward_user_tag(@post.user, class: 'btn btn-lg btn-default') %>
     </div>
   </div>
 </div>
