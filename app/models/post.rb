@@ -4,10 +4,14 @@ class Post < ApplicationRecord
 
   enum status: %i(upcoming published rejected)
 
+  validates :slug, uniqueness: true, if: Proc.new { |post| post.slug.present? }
+  validates :title, :summary, :body, presence: true
+
   counter :hits
 
   before_save :generate_summary
   before_create :generate_published_at
+  before_validation :safe_slug
 
   def to_param
     self.slug.blank? ? self.id : self.slug
@@ -32,6 +36,11 @@ class Post < ApplicationRecord
   end
 
   private
+
+  def safe_slug
+    self.slug.downcase!
+    self.slug.gsub!(/[^a-z0-9]/i, '-')
+  end
 
   def generate_published_at
     self.published_at = Time.now
