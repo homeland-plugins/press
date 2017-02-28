@@ -2,25 +2,31 @@
 
 <div id="post-detail" class="panel panel-default">
   <div class="panel-body">
-    <div class="post-opts">
-      <% if can?(:update, @post) %>
-      <%= link_to '编辑', edit_post_path, class: 'btn btn-sm btn-default' %>
-      <% end %>
+    <div class="post-opts clearfix">
+      <div class="pull-left">
+        <a href="<%= posts_path %>" class="btn btn-default"><i class="fa fa-chevron-left"></i> 返回文章列表</a>
+      </div>
 
-      <% if can?(:publish, @post) && @post.upcoming? %>
-      <%= link_to '审核通过', publish_post_path, method: 'put', class: 'btn btn-sm btn-success' %>
-      <% end %>
+      <div class="pull-right">
+        <% if can?(:update, @post) %>
+        <%= link_to '编辑', edit_post_path, class: 'btn btn-sm btn-default' %>
+        <% end %>
 
-      <% if can?(:destroy, @post) && @post.upcoming? %>
-      <%= link_to '删除', @post, method: 'delete', class: 'btn btn-sm btn-danger', data: { confirm: "确定要删除么？" } %>
-      <% end %>
+        <% if can?(:publish, @post) && @post.upcoming? %>
+        <%= link_to '审核通过', publish_post_path, method: 'put', class: 'btn btn-sm btn-success' %>
+        <% end %>
+
+        <% if can?(:destroy, @post) && @post.upcoming? %>
+        <%= link_to '删除', @post, method: 'delete', class: 'btn btn-sm btn-danger', data: { confirm: "确定要删除么？" } %>
+        <% end %>
+      </div>
     </div>
     <h1><%= @post.title %></h1>
     <div class="post-info">
       <%= user_name_tag(@post.user) %> ·
-      <%= timeago @post.created_at %> ·
+      <span class="time" title="发布时间"><i class="fa fa-clock-o"></i> <%= timeago @post.created_at %></span> ·
       <%= @post.hits %> 次阅读 ·
-      <a href="#comments"><%= @post.comments_count %> 条评论</a>
+      <a href="#comments"><i class="fa fa-comments-o"></i> <%= @post.comments_count %> 条评论</a>
     </div>
     <div class="post-body markdown">
       <%= markdown @post.body %>

@@ -1,0 +1,17 @@
+<div class="sidebar col-md-3 hide-ios">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <% if can? :create, Post %>
+        <%= link_to "提交新文章", new_post_path, class: 'btn btn-block btn-primary' %>
+      <% end %>
+
+      <% if can? :publish, Post %>
+      <hr />
+      <a href="<%= upcoming_posts_path %>" data-turbolinks-action="replace">
+        <i class="fa fa-newspaper-o"></i> 待审核列表...
+      </a>
+      <% end %>
+    </div>
+  </div>
+  <%= raw Setting.topic_index_sidebar_html %>
+</div>

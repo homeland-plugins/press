@@ -10,7 +10,6 @@ module Homeland::Press
 
     def upcoming
       @posts = Post.upcoming.order('id desc').page(params[:page]).per(10)
-      render 'index'
     end
 
     # GET /posts/1

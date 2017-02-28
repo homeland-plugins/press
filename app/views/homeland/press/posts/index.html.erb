@@ -1,36 +1,18 @@
 <% title_tag "头条" %>
 
-<% content_for :sub_navbar do %>
-  <div class="sub-navbar node-header hide-ios">
-    <div class="container">
-      <div class="pull-right">
-        <% if can? :create, Post %>
-          <%= link_to "提交新文章", new_post_path, class: 'btn btn-sm btn-primary' %>
+<div class="row">
+  <div class="col-md-9">
+    <div id="post-list" class="panel panel-default post-<%= action_name %>">
+      <div class="panel-body">
+        <% if @posts.blank? %>
+          <div class="no-result">暂无任何文章</div>
+        <% else %>
+          <%= render partial: 'post', collection: @posts %>
         <% end %>
-      </div>
 
-      <ul class="filter nav nav-pills">
-        <li class="<%= ' active' if action_name == 'index' %>">
-          <a href="<%= posts_path %>" data-turbolinks-action="replace">最近发布</a>
-        </li>
-        <% if can? :publish, Post %>
-        <li class="<%= ' active' if action_name == 'upcoming' %>">
-          <a href="<%= upcoming_posts_path %>" data-turbolinks-action="replace">待审核</a>
-        </li>
-        <% end %>
-      </ul>
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
-<% end %>
-
-<div id="post-list" class="panel panel-default post-<%= action_name %>">
-  <div class="panel-body">
-    <% if @posts.blank? %>
-      <div class="no-result">暂无任何文章</div>
-    <% else %>
-      <%= render partial: 'post', collection: @posts %>
-    <% end %>
-
-    <%= paginate @posts %>
-  </div>
+  <%= render 'sidebar' %>
 </div>

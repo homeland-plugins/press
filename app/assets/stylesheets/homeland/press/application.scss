@@ -1,12 +1,6 @@
 /*
  *= require_self
  */
-
-.sub-navbar .container,
-.main-container {
-  max-width: 960px;
-}
-
 #homeland-press {
 
 
@@ -27,14 +21,32 @@
     }
 
     .post {
+      margin: 0 -15px;
+      padding: 0 15px 15px 15px;
       margin-bottom: 15px;
       border-bottom: 1px solid #eee;
-      padding-bottom: 15px;
 
       &:last-child {
         border-bottom: 0;
         margin-bottom: 0px;
       }
+    }
+
+    .post-likes {
+      width: 60px;
+      text-align: center;
+      padding-top: 0px;
+      color: #666;
+
+      &.active {
+        .icon { color: #EB5424; }
+      }
+
+      .icon {
+        font-size: 22px; margin-bottom: 0px;
+
+      }
+      .counter { font-size: 14px; }
     }
 
     .post-title { font-size: 18px; line-height: 22px; margin-bottom: 0px; }
@@ -44,6 +56,7 @@
     }
     .post-info {
       color: #aaa;
+      font-size: 12px;
       a { color: #aaa; }
     }
 
@@ -94,5 +107,17 @@
         }
       }
     }
+  }
+}
+
+.post-upcoming {
+  .post {
+    .title {
+      font-size: 16px;
+      a { color: #2e3ebd; }
+      a:visited { color: #777; }
+    }
+    .author,
+    .time { width: 120px; }
   }
 }

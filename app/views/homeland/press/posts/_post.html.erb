@@ -1,14 +1,21 @@
-<div class="post" id="post-<= post.id %>">
-  <div class="post-title"><%= link_to post.title, post %></div>
-  <% if post.published? %>
-  <div class="post-summary markdown">
-    <%= simple_format post.summary %>
+<div class="post media" id="post-<= post.id %>">
+  <div class="media-left">
+    <div class="post-likes<%= ' active' if post.likes_count >= 1 %>">
+      <div class="icon"><i class="fa fa-heart"></i></div>
+      <div class="counter"><%= post.likes_count %></div>
+    </div>
   </div>
-  <div class="post-info">
-    <%= user_name_tag(post.user) %> ·
-    <%= timeago(post.created_at) %> ·
-    <%= link_to "#{post.likes_count} 个赞", post %> ·
-    <%= link_to "#{post.comments_count} 条评论", post_path(post, anchor: 'comments') %>
+  <div class="media-body">
+    <div class="post-title"><%= link_to post.title, post %></div>
+    <% if post.published? %>
+    <div class="post-summary markdown">
+      <%= simple_format post.summary %>
+    </div>
+    <div class="post-info">
+      <%= user_name_tag(post.user) %> ·
+      <span class="time" title="发布时间"><i class="fa fa-clock-o"></i> <%= timeago(post.created_at) %></span> ·
+      <%= link_to "#{post.comments_count} 条评论", post_path(post, anchor: 'comments') %>
+    </div>
+    <% end %>
   </div>
-  <% end %>
 </div>

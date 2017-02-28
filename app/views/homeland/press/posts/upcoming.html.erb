@@ -1,0 +1,34 @@
+<% title_tag "头条" %>
+
+<div class="row">
+  <div class="col-md-9">
+    <div id="post-upcoming" class="panel panel-default post-<%= action_name %>">
+      <div class="panel-heading">待审核列表</div>
+      <div class="panel-body">
+        <% if @posts.blank? %>
+          <div class="no-result">暂无任何文章</div>
+        <% else %>
+          <table class="table table-bordered table-striped table-condensed">
+            <tr>
+              <th>#</th>
+              <th>标题</th>
+              <th>提交人</th>
+              <th>更新时间</th>
+            </tr>
+            <% @posts.each do |post| %>
+            <tr class="post">
+              <td><%= post.id %></td>
+              <td class="title"><%= link_to post.title, post %></td>
+              <td class="author"><%= user_name_tag(post.user) %></td>
+              <td class="time"><%= timeago post.updated_at %></td>
+            </tr>
+            <% end %>
+          </table>
+        <% end %>
+
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
+  <%= render 'sidebar' %>
+</div>
