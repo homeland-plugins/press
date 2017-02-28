@@ -10,15 +10,17 @@ module Homeland
             plugin.display_name   = '头条'
             plugin.description    = 'A Press plugin for Homeland.'
             plugin.navbar_link    = true
+            plugin.admin_navbar_link = true
             plugin.user_menu_link = true
             plugin.root_path      = "/posts"
+            plugin.admin_path     = "/admin/posts"
             plugin.spec_path      = config.root.join('spec')
           end
 
           User.send :include, Homeland::Press::UserMixin
 
           app.routes.prepend do
-            mount Homeland::Press::Engine, at: '/posts'
+            mount Homeland::Press::Engine => '/'
           end
 
           app.config.paths["db/migrate"].concat(config.paths["db/migrate"].expanded)

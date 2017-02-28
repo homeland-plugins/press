@@ -1,0 +1,26 @@
+<% content_for :sitemap do %>
+  <span class="current">头条</span>
+<% end %>
+
+<table class="table table-bordered table-striped table-condensed">
+<tr>
+  <th>#</th>
+  <th>状态</th>
+  <th>标题</th>
+  <th>提交人</th>
+  <th>更新时间</th>
+  <th style="width:100px"></th>
+</tr>
+<% @posts.each do |post| %>
+<tr class="post">
+  <td><%= post.id %></td>
+  <td><%= post.status %></td>
+  <td class="title"><%= link_to post.title, post %></td>
+  <td class="author"><%= user_name_tag(post.user) %></td>
+  <td class="time"><%= l post.updated_at, format: :long %></td>
+  <td><%= link_to "", admin_post_path(post), 'data-confirm' => 'Are you sure?', method: :delete, class: "fa fa-trash" %></td>
+</tr>
+<% end %>
+</table>
+
+<%= paginate @posts %>
