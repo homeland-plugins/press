@@ -25,6 +25,9 @@ defaults: &defaults
   modules: 'topic,...,press'
 ```
 
+## Screenshot
+
+![2017-02-28 10 52 08](https://cloud.githubusercontent.com/assets/5518/23389601/f72025f2-fda3-11e6-8340-7845c21e3a06.png)
 
 ## Contributing
 
