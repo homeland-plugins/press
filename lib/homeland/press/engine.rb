@@ -4,7 +4,7 @@ module Homeland
       isolate_namespace Homeland::Press
 
       initializer 'homeland.press.init' do |app|
-        return unless Setting.has_module?(:press)
+        break unless Setting.has_module?(:press)
         app.config.after_initialize do
           # Because need use I18n.t
           # must after Rails application initialized will get correct locale
