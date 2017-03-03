@@ -3,18 +3,17 @@ module Homeland
     class Engine < ::Rails::Engine
       isolate_namespace Homeland::Press
 
-      initializer 'homeland_press.init' do |app|
+      initializer 'homeland.press.init' do |app|
         if Setting.has_module?(:press)
           Homeland.register_plugin do |plugin|
-            plugin.name           = 'press'
-            plugin.display_name   = 'Press'
-            plugin.description    = 'A Press plugin for Homeland.'
-            plugin.navbar_link    = true
+            plugin.name              = 'press'
+            plugin.display_name      = 'Press'
+            plugin.description       = 'A Press/News plugin for Homeland.'
+            plugin.navbar_link       = true
             plugin.admin_navbar_link = true
-            plugin.user_menu_link = true
-            plugin.root_path      = "/posts"
-            plugin.admin_path     = "/admin/posts"
-            plugin.spec_path      = config.root.join('spec')
+            plugin.user_menu_link    = true
+            plugin.root_path         = "/posts"
+            plugin.admin_path        = "/admin/posts"
           end
 
           User.send :include, Homeland::Press::UserMixin
