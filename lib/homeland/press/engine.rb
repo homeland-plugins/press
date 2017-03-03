@@ -7,7 +7,7 @@ module Homeland
         if Setting.has_module?(:press)
           Homeland.register_plugin do |plugin|
             plugin.name           = 'press'
-            plugin.display_name   = '头条'
+            plugin.display_name   = 'Press'
             plugin.description    = 'A Press plugin for Homeland.'
             plugin.navbar_link    = true
             plugin.admin_navbar_link = true

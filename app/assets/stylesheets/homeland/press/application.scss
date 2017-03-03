@@ -83,6 +83,17 @@
       color: #999;
     }
 
+
+    .social-share-button {
+      text-align: center;
+      margin: 15px 0;
+      height: 24px;
+      .ssb-icon {
+        width: 24px; height: 24px;
+        background-size: 24px 24px;
+      }
+    }
+
     .post-info {
       .media-object { display: inline; }
       a { color: #777;}

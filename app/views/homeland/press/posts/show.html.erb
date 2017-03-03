@@ -31,6 +31,7 @@
     <div class="post-body markdown">
       <%= markdown @post.body %>
     </div>
+    <%= social_share_button_tag @post.title %>
     <div class="post-actions">
       <%= likeable_tag(@post, class: 'btn btn-lg btn-default') %>
 
