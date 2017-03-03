@@ -26,6 +26,9 @@
       margin-bottom: 15px;
       border-bottom: 1px solid #eee;
 
+      @media (max-width: 480px) {
+      }
+
       &:last-child {
         border-bottom: 0;
         margin-bottom: 0px;
@@ -60,15 +63,25 @@
       a { color: #aaa; }
     }
 
-    &.post-upcoming {
-      .post-title { font-size: 16px; }
+    @media (max-width: 480px) {
+      .post-title { font-size: 16px; line-height: 18px; }
+      .post-likes {
+        width: 40px;
+      }
     }
+
   }
 
 
   #post-detail {
     .panel-body {
       padding: 30px 50px;
+    }
+
+    @media (max-width: 480px) {
+      .panel-body {
+        padding: 15px;
+      }
     }
 
     h1 {
