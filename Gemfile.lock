@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    homeland-press (0.3.2)
+    homeland-press (0.3.3)
       rails (~> 5)
 
 GEM
