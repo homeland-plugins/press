@@ -14,7 +14,6 @@ module Homeland
             plugin.description       = 'A Press/News plugin for Homeland.'
             plugin.navbar_link       = true
             plugin.admin_navbar_link = true
-            plugin.user_menu_link    = true
             plugin.root_path         = "/posts"
             plugin.admin_path        = "/admin/posts"
           end
