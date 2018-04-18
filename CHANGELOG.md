@@ -1,3 +1,9 @@
+0.4.0
+------
+
+- 去掉 simple_form；
+- HTML 改为 Bootstrap V4；
+
 0.3.4
 -----
 

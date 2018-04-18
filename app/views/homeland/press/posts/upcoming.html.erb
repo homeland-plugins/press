@@ -2,9 +2,9 @@
 
 <div class="row">
   <div class="col-md-9">
-    <div id="post-upcoming" class="panel panel-default post-<%= action_name %>">
-      <div class="panel-heading">待审核列表</div>
-      <div class="panel-body">
+    <div id="post-upcoming" class="card post-<%= action_name %>">
+      <div class="card-header">待审核列表</div>
+      <div class="card-body">
         <% if @posts.blank? %>
           <div class="no-result">暂无任何文章</div>
         <% else %>
@@ -25,7 +25,8 @@
             <% end %>
           </table>
         <% end %>
-
+      </div>
+      <div class="card-footer">
         <%= paginate @posts %>
       </div>
     </div>

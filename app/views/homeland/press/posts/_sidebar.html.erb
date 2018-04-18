@@ -1,6 +1,6 @@
 <div class="sidebar col-md-3 hide-ios">
-  <div class="panel panel-default">
-    <div class="panel-body">
+  <div class="card">
+    <div class="card-body">
       <% if can? :create, Post %>
         <%= link_to "提交新文章", new_post_path, class: 'btn btn-block btn-primary' %>
       <% end %>
