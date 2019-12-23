@@ -3,6 +3,10 @@ module Homeland
     class Engine < ::Rails::Engine
       isolate_namespace Homeland::Press
 
+      initializer 'homeland.press.assets.precompile', group: :all do |app|
+        app.config.assets.precompile += %w[homeland/press/application.css homeland/press/application.js]
+      end
+
       initializer 'homeland.press.init' do |app|
         if Setting.has_module?(:press)
           app.config.after_initialize do
