@@ -5,7 +5,7 @@ module Homeland
     class Engine < ::Rails::Engine
       isolate_namespace Homeland::Press
 
-      initializer 'homeland.site.migrate' do |_app|
+      initializer 'homeland.press.migrate' do |_app|
         Homeland.migrate_plugin(File.expand_path('../../../migrate', __dir__))
       end
 
