@@ -1,11 +1,177 @@
 <% content_for :stylesheets do %>
-  <%= stylesheet_link_tag    "homeland/press/application", media: "all" %>
+  <style type="text/css">
+    /* *= require_self */
+     #homeland-press textarea#post_body {
+    	 height: 400px;
+    }
+     #homeland-press .toolbar {
+    	 margin-bottom: 15px;
+    	 border-bottom: 2px solid #eee;
+    	 padding-bottom: 15px;
+    }
+     #homeland-press .filter {
+    	 font-size: 15px;
+    }
+     #homeland-press #post-list .post {
+    	 margin: 0 -15px;
+    	 padding: 0 15px 15px 15px;
+    	 margin-bottom: 15px;
+    	 border-bottom: 1px solid #eee;
+    }
+     #homeland-press #post-list .post:last-child {
+    	 border-bottom: 0;
+    	 margin-bottom: 0px;
+    }
+     #homeland-press #post-list .post-likes {
+    	 width: 60px;
+    	 text-align: center;
+    	 padding-top: 0px;
+    	 color: #666;
+    }
+     #homeland-press #post-list .post-likes.active .icon {
+    	 color: #eb5424;
+    }
+     #homeland-press #post-list .post-likes .icon {
+    	 font-size: 22px;
+    	 margin-bottom: 0px;
+    }
+     #homeland-press #post-list .post-likes .counter {
+    	 font-size: 14px;
+    }
+     #homeland-press #post-list .post-title {
+    	 font-size: 18px;
+    	 line-height: 22px;
+    	 margin-bottom: 0px;
+    }
+     #homeland-press #post-list .post-summary {
+    	 padding: 10px 0;
+    	 font-size: 14px;
+    	 color: #888;
+    }
+     #homeland-press #post-list .post-info {
+    	 color: #aaa;
+    	 font-size: 12px;
+    }
+     #homeland-press #post-list .post-info a {
+    	 color: #aaa;
+    }
+     @media (max-width: 480px) {
+    	 #homeland-press #post-list .post-title {
+    		 font-size: 16px;
+    		 line-height: 18px;
+    	}
+    	 #homeland-press #post-list .post-likes {
+    		 width: 40px;
+    	}
+    }
+     #homeland-press #post-detail .panel-body {
+    	 padding: 30px 50px;
+    }
+     @media (max-width: 480px) {
+    	 #homeland-press #post-detail .panel-body {
+    		 padding: 15px;
+    	}
+    }
+     #homeland-press #post-detail h1 {
+    	 text-align: center;
+    	 margin-bottom: 15px;
+    	 font-size: 24px;
+    }
+     #homeland-press #post-detail .post-opts, #homeland-press #post-detail .post-info, #homeland-press #post-detail .post-actions {
+    	 text-align: center;
+    	 color: #999;
+    }
+     #homeland-press #post-detail .social-share-button {
+    	 text-align: center;
+    	 margin: 15px 0;
+    	 height: 24px;
+    }
+     #homeland-press #post-detail .social-share-button .ssb-icon {
+    	 width: 24px;
+    	 height: 24px;
+    	 background-size: 24px 24px;
+    }
+     #homeland-press #post-detail .post-info {
+    	 margin-bottom: 20px;
+    }
+     #homeland-press #post-detail .post-info .media-object {
+    	 display: inline;
+    }
+     #homeland-press #post-detail .post-info a {
+    	 color: #777;
+    }
+     #homeland-press #post-detail .post-info a.user-name {
+    	 color: #0069d6;
+    	 font-weight: bold;
+    }
+     #homeland-press #post-detail .post-actions {
+    	 margin-top: 15px;
+    }
+     #homeland-press #post-detail .post-actions .btn {
+    	 padding: 8px 20px 6px 20px;
+    	 border-radius: 6px;
+    	 font-size: 16px;
+    	 margin: 0 5px;
+    }
+     #homeland-press #post-detail .post-actions .likeable.active {
+    	 color: #eb5424;
+    	 background: #fff !important;
+    	 box-shadow: 0 0 0;
+    }
+     .post-upcoming .post .title {
+    	 font-size: 16px;
+    }
+     .post-upcoming .post .title a {
+    	 color: #2e3ebd;
+    }
+     .post-upcoming .post .title a:visited {
+    	 color: #777;
+    }
+     .post-upcoming .post .author, .post-upcoming .post .time {
+    	 width: 120px;
+    }
+  </style>
 <% end %>
-
 <% content_for :javascripts do %>
-  <%= javascript_include_tag "homeland/press/application" %>
+  <script type="text/javascript">
+    window.PostView = Backbone.View.extend({
+        el: "body",
+        events: {
+          "click .editor-toolbar .edit a": "toggleEditView",
+          "click .editor-toolbar .preview a": "togglePreviewView"
+        },
+        initialize: function(opts) {
+          $("<div id='preview' class='markdown form-control' style='display:none;'></div>").insertAfter($('#post_body'));
+          return window._editor = new Editor();
+        },
+        toggleEditView: function(e) {
+          $(e.target).parent().addClass('active');
+          $('.preview a').parent().removeClass('active');
+          $('#preview').hide();
+          $('#post_body').show();
+          return false;
+        },
+        togglePreviewView: function(e) {
+          $(e.target).parent().addClass('active');
+          $('.edit a').parent().removeClass('active');
+          $('#preview').html('Loading...');
+          $('#post_body').hide();
+          $('#preview').show();
+          $.post('/posts/preview', {
+            body: $('#post_body').val()
+          }, function(data) {
+            $('#preview').html(data);
+            return false;
+          });
+          return false;
+        }
+      });
+    
+      document.addEventListener('turbolinks:load', function() {
+        return window._postView = new PostView();
+      });
+  </script>
 <% end %>
-
 <% content_for :main do %>
   <script type="text/javascript">
     $('.navbar-nav .nav-plugin-press').addClass("active");
@@ -14,5 +180,4 @@
     <%= yield %>
   </div>
 <% end %>
-
 <%= render template: "/layouts/application" %>

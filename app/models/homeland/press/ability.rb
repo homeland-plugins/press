@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Homeland::Press
   class Ability
     include CanCan::Ability
@@ -8,16 +10,20 @@ module Homeland::Press
       @user = u
       if @user.blank?
         roles_for_anonymous
-      elsif @user.roles?(:admin)
-        can :manage, Post
-      elsif @user.roles?(:member)
-        roles_for_members
+      elsif @user.admin?
+        roles_for_maintainers
+      elsif @user.maintainer?
+        roles_for_maintainers
       else
-        roles_for_anonymous
+        roles_for_members
       end
     end
 
     protected
+
+    def roles_for_maintainers
+      can :manage, Post
+    end
 
     # 普通会员权限
     def roles_for_members
@@ -34,7 +40,7 @@ module Homeland::Press
     end
 
     def basic_read_only
-      can [:read, :upcoming], Post
+      can %i[read upcoming], Post
     end
   end
 end

@@ -1,36 +1,19 @@
+# frozen_string_literal: true
+
 module Homeland
   module Press
     class Engine < ::Rails::Engine
       isolate_namespace Homeland::Press
 
-      initializer 'homeland.press.assets.precompile', group: :all do |app|
-        app.config.assets.precompile += %w[homeland/press/application.css homeland/press/application.js]
+      initializer 'homeland.site.migrate' do |_app|
+        Homeland.migrate_plugin(File.expand_path('../../../migrate', __dir__))
       end
 
       initializer 'homeland.press.init' do |app|
-        if Setting.has_module?(:press)
-          app.config.after_initialize do
-            # Because need use I18n.t
-            # must after Rails application initialized will get correct locale
-            Homeland.register_plugin do |plugin|
-              plugin.name              = 'press'
-              plugin.display_name      = I18n.t('plugin.press')
-              plugin.description       = 'A Press/News plugin for Homeland.'
-              plugin.navbar_link       = true
-              plugin.admin_navbar_link = true
-              plugin.root_path         = "/posts"
-              plugin.admin_path        = "/admin/posts"
-            end
-          end
+        User.include Homeland::Press::UserMixin
 
-
-          User.send :include, Homeland::Press::UserMixin
-
-          app.routes.prepend do
-            mount Homeland::Press::Engine => '/'
-          end
-
-          app.config.paths["db/migrate"].concat(config.paths["db/migrate"].expanded)
+        app.routes.prepend do
+          mount Homeland::Press::Engine => '/'
         end
       end
     end

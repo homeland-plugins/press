@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Homeland::Press
   module UserMixin
     extend ActiveSupport::Concern
