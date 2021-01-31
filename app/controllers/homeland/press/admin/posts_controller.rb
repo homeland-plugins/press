@@ -1,6 +1,6 @@
 module Homeland::Press::Admin
   class PostsController < ::Admin::ApplicationController
-    layout '/layouts/admin'
+    layout 'layouts/admin'
 
     def index
       @posts = Post.includes(:user).order("id desc").page(params[:page])
